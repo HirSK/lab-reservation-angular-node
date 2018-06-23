@@ -1,0 +1,10 @@
+
+  <input class="form-control" placeholder="yyyy-mm-dd"   name="dp" [(ngModel)]="model" (ngModelChange)='onChange()' ngbDatepicker #d="ngbDatepicker">
+  &nbsp;
+  <button class="btn btn-outline-secondary" (click)="d.toggle()"  type="button">
+    <img src="../../../assets/icons/calendar.svg" style="width: 70%;height: 70%; cursor: pointer;"/>
+  </button>
+  &nbsp;
+
+
+  <!-- <pre>Model: {{ model | json }}</pre> -->
