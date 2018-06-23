@@ -1,5 +1,5 @@
 import { Component , OnInit, Inject} from '@angular/core';
-import { LabService } from '../../components/services/LabService';
+import { LabService } from '../services/LabService';
 import {MatDialog} from '@angular/material';
 import { NewReservationDialogComponent } from '../new-reservation-dialog/new-reservation-dialog.component';
 
@@ -10,11 +10,6 @@ import { NewReservationDialogComponent } from '../new-reservation-dialog/new-res
 })
 export class SidebarComponent implements OnInit {
 
-  // labs = [
-  //   { id: '1', name: 'W001'},
-  //   { id: '2', name: 'W002' },
-  //   { id: '3', name: 'Mini Audi' }
-  // ];
   labs: LabService[] = [];
   selectedLab: LabService;
   dialogResult = '';

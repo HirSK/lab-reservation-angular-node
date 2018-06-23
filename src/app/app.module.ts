@@ -16,8 +16,7 @@ import {MatNativeDateModule ,
         MatDialogModule
       } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
-
-
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -29,7 +28,7 @@ import { TimePickerComponent } from './components/time-picker/time-picker.compon
 
 
 const appRoutes: Routes = [
-  { path: 'lab', component: LabInfoComponent },
+  { path: '', component: AppComponent }
 ];
 
 
@@ -58,7 +57,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     NgbModule.forRoot(),
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [],
   entryComponents: [NewReservationDialogComponent],
