@@ -6,7 +6,7 @@ var Reservation = require('../models/Reservation');
 
 /* GET ALL LABS */
 router.get('/labs', function(req, res, next) {
-  console.log("get request for labs");
+  //console.log("get request for labs");
   // Lab.find(function (err, labs) {
   //   if (err) return next(err);
   //   res.json(labs);
@@ -21,9 +21,11 @@ router.get('/labs', function(req, res, next) {
   });
 });
 
+//POST A REQUEST FROM THE USER
 router.post('/apply',function(req,res,next){
-  console.log('in the route');
+  //console.log('in the route');
   let newReservation = new Reservation({
+    labCode: req.body.labCode,
     regNo: req.body.regNo,
     applier: req.body.applier,
     reservePurpose: req.body.reservePurpose,
@@ -31,7 +33,8 @@ router.post('/apply',function(req,res,next){
     startHour: req.body.startHour,
     startMinute: req.body.startMinute,
     endHour: req.body.endHour,
-    endMinute: req.body.endMinute
+    endMinute: req.body.endMinute,
+    approval: false
   });
 
   Reservation.addNewReservation(newReservation,(err,reservation) => {
@@ -41,8 +44,221 @@ router.post('/apply',function(req,res,next){
       res.json({success: true, msg: 'Your reservation submitted.Approval is pending..'});
     }
   });
-
 })
+
+
+// CHECK REQUEST TIME AVAILABILITY
+router.get('/checkAvailability',function(req,res,next){
+  // console.log(req.body);
+  Reservation.find(
+    {
+      $and : [
+        {
+          "labCode": req.body.labCode
+        },
+        {
+          "reserveDate": req.body.reserveDate
+        },
+        {
+          $or : [
+                  {"startHour" : {$gt: req.body.startHour, $lt: req.body.endHour}},
+                  {"endHour" : {$gt: req.body.startHour, $lt: req.body.endHour}},
+                  {
+                    $and:
+                    [
+                      {
+                        "startHour" : {$lt: req.body.startHour}
+                      },
+                      {
+                        "endHour" : {$gt: req.body.endHour}
+                      },
+                    ]
+                  },
+                  {
+                    $and:
+                    [
+                      {
+                        "startHour" : {$eq: req.body.startHour}
+                      },
+                      {
+                        "startMinute" : {$gt: req.body.startMinute}
+                      },
+                    ]
+                  },
+                  {
+                    $and:
+                    [
+                      {
+                        "startHour" : {$eq: req.body.endHour}
+                      },
+                      {
+                        "endMinute" : {$lt: req.body.endMinute}
+                      },
+                    ]
+                  },
+                  {
+                    $and:
+                    [
+                      {
+                        "endHour" : {$eq: req.body.endHour}
+                      },
+                      {
+                        "endMinute" : {$lt: req.body.endMinute}
+                      },
+                    ]
+                  },
+                  {
+                    $and:
+                    [
+                      {
+                        "endHour" : {$eq: req.body.startHour}
+                      },
+                      {
+                        "endMinute" : {$gt: req.body.startMinute}
+                      },
+                    ]
+                  },
+
+                ]
+         },
+
+         {
+
+         }
+
+      ]
+    },
+    function(err,result){
+      if(err){
+        console.log(err);
+      }else{
+        res.json(result);
+      }
+  }
+);
+  //if the checking time is 12.30 - 14.45
+  // Reservation.find(
+  //     {
+  //       $and : [
+  //         {
+  //           "labCode":"W002"
+  //         },
+  //         {
+  //           "reserveDate":"2018-06-24"
+  //         },
+  //         {
+  //           $or : [
+  //                   {"startHour" : {$gt: 12, $lt: 14}},
+  //                   {"endHour" : {$gt: 12, $lt: 14}},
+  //                   {
+  //                     $and:
+  //                     [
+  //                       {
+  //                         "startHour" : {$lt: 12}
+  //                       },
+  //                       {
+  //                         "endHour" : {$gt: 14}
+  //                       },
+  //                     ]
+  //                   },
+  //                   {
+  //                     $and:
+  //                     [
+  //                       {
+  //                         "startHour" : {$eq: 12}
+  //                       },
+  //                       {
+  //                         "startMinute" : {$gt: 30}
+  //                       },
+  //                     ]
+  //                   },
+  //                   {
+  //                     $and:
+  //                     [
+  //                       {
+  //                         "endHour" : {$eq: 14}
+  //                       },
+  //                       {
+  //                         "endMinute" : {$lt: 45}
+  //                       },
+  //                     ]
+  //                   },
+  //                   {
+  //                     $and:
+  //                     [
+  //                       {
+  //                         "endHour" : {$eq: 12}
+  //                       },
+  //                       {
+  //                         "endMinute" : {$gt: 30}
+  //                       },
+  //                     ]
+  //                   },
+  //                   {
+  //                     $and:
+  //                     [
+  //                       {
+  //                         "startHour" : {$eq: 14}
+  //                       },
+  //                       {
+  //                         "endMinute" : {$lt: 45}
+  //                       },
+  //                     ]
+  //                   }
+  //                 ]
+  //          },
+
+  //          {
+
+  //          }
+  //         // {
+  //         //   "startMinute": {$lt: 45}
+  //         // },
+  //         // {
+  //         //   "endMinute": {$gt: 30}
+  //         // }
+  //       ]
+  //     },
+  //     function(err,result){
+  //       if(err){
+  //         console.log(err);
+  //       }else{
+  //         res.json(result);
+  //       }
+  //   }
+  // );
+})
+
+//  GET ALL PENDING REQUESTS OF THE USER
+router.get('/getAllPendingRequests',function(req,res,next) {
+  Reservation.find({})
+  .exec(function(err,reservations){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(reservations);
+    }
+  });
+})
+
+// UPDATES A REQUEST'S APPROVAL TO TRUE
+router.put('/approveRequest',function(req,res,next) {
+
+  console.log(req.body.id);
+  Reservation.updateOne(
+    {_id:req.body.id},
+    {$set: {approval: true}},
+     function(err, approval) {
+      if (err) {
+        res.json({success: false, msg: 'Failed'});
+      }
+      else{
+        res.json({success: true, msg: 'Approved'});
+      }
+
+  });
+})
+
 
 
 

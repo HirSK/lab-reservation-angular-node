@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import { ReservationService } from '../services/ReservationService';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-reservation-form.component.css']
 })
 export class NewReservationFormComponent implements OnInit {
-
+  @Input() labCode: string ;
   regNo: String;
   applier: String;
   reservePurpose: String;
@@ -23,7 +23,13 @@ export class NewReservationFormComponent implements OnInit {
     private router: Router,
     ) { }
 
+    refresh() {
+      this.router.navigate(['/']);
+      this.ngOnInit();   }
+
+
   ngOnInit() {
+    // console.log(this.labCode);
   }
 
   OnDateSelected( dateSelected: any ) {
@@ -55,26 +61,34 @@ export class NewReservationFormComponent implements OnInit {
       this.flashMessage.show('Please fill the required fields', {cssClass: 'alert-danger' , timeout: 3000});
       return false;
     }
+
     const reservation = {
+      labCode: this.labCode,
       regNo: this.regNo,
       applier: this.applier,
       reservePurpose: this.reservePurpose,
       reserveDate: this.dateSelected.year + '-' + this.dateSelected.month + '-' + this.dateSelected.day,
       startHour: this.startTimeSelected.hour,
       startMinute: this.startTimeSelected.minute,
-      endHour: this.startTimeSelected.hour,
-      endMinute: this.startTimeSelected.minute,
+      endHour: this.endTimeSelected.hour,
+      endMinute: this.endTimeSelected.minute,
 
     };
-     console.log(reservation);
+    console.log(reservation);
+
+    if (!this.reservationService.validateAvailability(reservation)) {
+      this.flashMessage.show('Cannot reserve the time slot.Try another time period', {cssClass: 'alert-danger' , timeout: 3000});
+      return false;
+    }
 
     this.reservationService.addNewReservation(reservation).subscribe(
       data => {
         if (data.success) {
           this.flashMessage.show('Your reservation submitted.Approval is pending..', {cssClass: 'alert-success' , timeout: 3000});
-          this.router.navigate(['/']);
+          this.refresh();
         } else {
           this.flashMessage.show('Failed to submit your reservation', {cssClass: 'alert-danger' , timeout: 3000});
+          this.refresh();
         }
        }
     );

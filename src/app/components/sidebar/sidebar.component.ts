@@ -1,4 +1,4 @@
-import { Component , OnInit, Inject} from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { LabService } from '../services/LabService';
 import {MatDialog} from '@angular/material';
 import { NewReservationDialogComponent } from '../new-reservation-dialog/new-reservation-dialog.component';

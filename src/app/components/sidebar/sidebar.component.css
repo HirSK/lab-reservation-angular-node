@@ -1,17 +1,19 @@
 .lab-sidebar{
-    background-color: rgb(179, 174, 168);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color:#C9C6C5;
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
-    width: 15em;
+    width: 13em;
+    padding-top: 25px;
+    text-align: center;
 }
 .example-container {
+  padding-top: 10px;
     bottom: 0;
     height: 1000px;
     left: 0;
     right: 0;
-    background: #eee;
+    background: white;
   }
 
 .selected {
@@ -26,7 +28,8 @@
     background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
-    height: 1.6em;
+    padding-bottom: .3em 0;
+    height: 2em;
     border-radius: 4px;
   }
   .mat-nav-list .selected:hover {

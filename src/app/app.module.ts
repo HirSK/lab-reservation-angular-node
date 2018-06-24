@@ -25,10 +25,14 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
 import { NewReservationDialogComponent } from './components/new-reservation-dialog/new-reservation-dialog.component';
 import { NewReservationFormComponent } from './components/new-reservation-form/new-reservation-form.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent }
+  { path: '', component: HomeComponent },
+  { path: 'admin', component: AdminpanelComponent }
 ];
 
 
@@ -40,7 +44,10 @@ const appRoutes: Routes = [
     DatePickerComponent,
     NewReservationDialogComponent,
     NewReservationFormComponent,
-    TimePickerComponent
+    TimePickerComponent,
+    HomeComponent,
+    NavbarComponent,
+    AdminpanelComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

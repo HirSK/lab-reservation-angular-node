@@ -1,12 +1,12 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav class="lab-sidebar" mode="side" opened>
-        <h3>UCSC Labs </h3>
-
+        <h4>UCSC Labs </h4>
+        <br>
         <mat-nav-list
             *ngFor="let lab of labs"
             [class.selected]="lab === selectedLab"
             (click)="onSelect(lab)">
-            <span >{{lab.labName}}</span>
+            <span >{{lab.labName}}</span><br><br>
         </mat-nav-list>
 
     </mat-sidenav>
@@ -15,7 +15,7 @@
 
         <div *ngIf="selectedLab">
 
-            <h4>{{ selectedLab.labName | uppercase }} - Lab Reservations </h4>
+            <h4 style="text-align: center">{{ selectedLab.labName | uppercase }} - Lab Reservations </h4>
 
                   <div class="container">
                       <!-- <ul class="nav nav-pills">
@@ -39,12 +39,12 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                              <app-lab-info [labId]="selectedLab.labCode"></app-lab-info>
+                              <app-lab-info [labCode]="selectedLab.labCode"></app-lab-info>
                           </div>
                           <!-- <div class="vl" style="border-left: 6px solid green;
                           height: 500px;position: absolute;right: 50%;"></div> -->
                           <div class="col-md-6">
-                              <app-new-reservation-form></app-new-reservation-form>
+                              <app-new-reservation-form [labCode]="selectedLab.labCode"></app-new-reservation-form>
                           </div>
                         </div>
                       </div>

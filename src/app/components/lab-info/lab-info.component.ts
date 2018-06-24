@@ -7,7 +7,7 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class LabInfoComponent implements OnInit {
 
-  @Input() labId: string ;
+  @Input() labCode: string ;
   panelOpenState: true;
 
   constructor() { }

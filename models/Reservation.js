@@ -2,14 +2,16 @@ var mongoose = require('mongoose');
 
 // reservation schema
 var reservationSchema = new mongoose.Schema({
+  labCode: String,
   regNo: String,
   applier: String,
   reservePurpose: String,
-  reserveDate: Date,
+  reserveDate: String,
   startHour: Number,
   startMinute: Number,
   endHour: Number,
-  endMinute: Number
+  endMinute: Number,
+  approval: Boolean
 });
 
 module.exports = mongoose.model('reservation', reservationSchema);
