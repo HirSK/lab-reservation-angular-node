@@ -74,4 +74,5 @@ export class ReservationService {
     searchReservationsByDate(data) {
       return this.http.post('http://localhost:3000/api/searchReservationsByDate', data).map(res => res.json());
     }
+
 }

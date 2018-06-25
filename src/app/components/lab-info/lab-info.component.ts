@@ -15,6 +15,7 @@ export class LabInfoComponent implements OnInit {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit() {
+
   }
 
 }

@@ -284,6 +284,7 @@ router.put('/rejectRequest',function(req,res,next) {
   });
 })
 
+// SEARCH RESERVATIONS BY DATE ,LAB AND IF APPROVAL==TRUE
 router.post('/searchReservationsByDate',function(req,res,next){
   console.log(req.body);
   Reservation.find(
@@ -294,6 +295,9 @@ router.post('/searchReservationsByDate',function(req,res,next){
         },
         {
           "labCode" : req.body.labCode
+        },
+        {
+          "approval" : true
         }
       ]
     },
@@ -306,6 +310,7 @@ router.post('/searchReservationsByDate',function(req,res,next){
       }
     })
 })
+
 
 
 module.exports = router;

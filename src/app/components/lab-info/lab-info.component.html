@@ -1,9 +1,10 @@
-    <h5><b>Reserved Time Slots</b></h5>
+    <h6 style="text-align: center">Reserved Time Slots</h6>
     <mat-accordion *ngFor="let reserve of searchResults">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{reserve.startHour}}.{{reserve.startMinute}} - {{reserve.endHour}}.{{reserve.endMinute}}
+              {{reserve.reserveDate}} &nbsp;
+              <b>{{reserve.startHour}}.{{reserve.startMinute}} - {{reserve.endHour}}.{{reserve.endMinute}}</b>
             </mat-panel-title>
             <mat-panel-description>
               {{reserve.reservePurpose}}
