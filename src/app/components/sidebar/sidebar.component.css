@@ -1,5 +1,5 @@
 .lab-sidebar{
-    background-color:#C9C6C5;
+    background-color:#e0ebeb;
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -10,14 +10,14 @@
 .example-container {
   padding-top: 10px;
     bottom: 0;
-    height: 1000px;
+    height: 800px;
     left: 0;
     right: 0;
     background: white;
   }
 
 .selected {
-    background-color: rgb(20, 159, 214) !important;
+    background-color:rgb(134, 180, 250) !important;
     color: rgb(19, 19, 20);
   }
 
@@ -25,7 +25,7 @@
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
+    background-color: rgb(199, 214, 226);
     margin: .5em;
     padding: .3em 0;
     padding-bottom: .3em 0;
@@ -37,8 +37,8 @@
     color: white;
   }
   .mat-nav-list:hover {
-    color: #607D8B;
-    background-color: #DDD;
+    color: rgb(41, 134, 180);
+    background-color: rgb(134, 180, 250);
     left: .1em;
   }
   .mat-nav-list .text {

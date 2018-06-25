@@ -28,6 +28,7 @@ import { TimePickerComponent } from './components/time-picker/time-picker.compon
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     TimePickerComponent,
     HomeComponent,
     NavbarComponent,
-    AdminpanelComponent
+    AdminpanelComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
