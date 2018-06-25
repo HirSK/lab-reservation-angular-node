@@ -48,8 +48,8 @@ router.post('/apply',function(req,res,next){
 
 
 // CHECK REQUEST TIME AVAILABILITY
-router.get('/checkAvailability',function(req,res,next){
-  // console.log(req.body);
+router.post('/checkAvailability',function(req,res,next){
+  console.log(req.body.labCode);
   Reservation.find(
     {
       $and : [
@@ -132,7 +132,15 @@ router.get('/checkAvailability',function(req,res,next){
       if(err){
         console.log(err);
       }else{
-        res.json(result);
+        console.log(result);
+        if (result.length > 0) {
+          // console.log('has a query');
+          res.json({success: false});
+        }else{
+          // console.log('no matchs');
+           res.json({success: true});
+        }
+
       }
   }
 );
@@ -244,7 +252,7 @@ router.get('/getAllPendingRequests',function(req,res,next) {
 // UPDATES A REQUEST'S APPROVAL TO TRUE
 router.put('/approveRequest',function(req,res,next) {
 
-  console.log(req.body.id);
+  // console.log(req.body.id);
   Reservation.updateOne(
     {_id:req.body.id},
     {$set: {approval: true}},
@@ -258,8 +266,46 @@ router.put('/approveRequest',function(req,res,next) {
 
   });
 })
+// UPDATES A REQUEST'S APPROVAL TO FALSE
+router.put('/rejectRequest',function(req,res,next) {
 
+  // console.log(req.body.id);
+  Reservation.updateOne(
+    {_id:req.body.id},
+    {$set: {approval: false}},
+     function(err, approval) {
+      if (err) {
+        res.json({success: false, msg: 'Failed'});
+      }
+      else{
+        res.json({success: true, msg: 'Rejected Successfully'});
+      }
 
+  });
+})
+
+router.post('/searchReservationsByDate',function(req,res,next){
+  console.log(req.body);
+  Reservation.find(
+    {
+      $and:[
+        {
+          "reserveDate": req.body.reserveDate
+        },
+        {
+          "labCode" : req.body.labCode
+        }
+      ]
+    },
+    function(err,result){
+      if(err){
+        console.log(err);
+      }else{
+        // console.log(result);
+        res.json(result);
+      }
+    })
+})
 
 
 module.exports = router;

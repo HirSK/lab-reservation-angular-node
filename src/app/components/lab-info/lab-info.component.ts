@@ -1,4 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { ReservationService } from '../services/ReservationService';
 
 @Component({
   selector: 'app-lab-info',
@@ -8,9 +9,10 @@ import { Component, OnInit, Input} from '@angular/core';
 export class LabInfoComponent implements OnInit {
 
   @Input() labCode: string ;
+  @Input() searchResults: ReservationService[] = [];
   panelOpenState: true;
 
-  constructor() { }
+  constructor(private reservationService: ReservationService) { }
 
   ngOnInit() {
   }

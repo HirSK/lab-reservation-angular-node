@@ -23,10 +23,10 @@ export class NewReservationFormComponent implements OnInit {
     private router: Router,
     ) { }
 
-    refresh() {
+  refresh() {
       this.router.navigate(['/']);
-      this.ngOnInit();   }
-
+      this.ngOnInit();
+  }
 
   ngOnInit() {
     // console.log(this.labCode);
@@ -71,27 +71,40 @@ export class NewReservationFormComponent implements OnInit {
       startHour: this.startTimeSelected.hour,
       startMinute: this.startTimeSelected.minute,
       endHour: this.endTimeSelected.hour,
-      endMinute: this.endTimeSelected.minute,
-
+      endMinute: this.endTimeSelected.minute
     };
-    console.log(reservation);
+    // console.log(reservation);
 
-    if (!this.reservationService.validateAvailability(reservation)) {
-      this.flashMessage.show('Cannot reserve the time slot.Try another time period', {cssClass: 'alert-danger' , timeout: 3000});
-      return false;
+    const result = this.reservationService.validateAvailability(reservation).subscribe();
+    // console.log(result);
+    if (result == null) {
+      console.log('null mattoo');
     }
 
-    this.reservationService.addNewReservation(reservation).subscribe(
+    this.reservationService.validateAvailability(reservation).subscribe(
       data => {
         if (data.success) {
-          this.flashMessage.show('Your reservation submitted.Approval is pending..', {cssClass: 'alert-success' , timeout: 3000});
-          this.refresh();
-        } else {
-          this.flashMessage.show('Failed to submit your reservation', {cssClass: 'alert-danger' , timeout: 3000});
-          this.refresh();
-        }
+            this.reservationService.addNewReservation(reservation).subscribe(
+              submitdata => {
+                if (submitdata.success) {
+                  this.flashMessage.show('Your reservation submitted.Approval is pending..', {cssClass: 'alert-success' , timeout: 3000});
+                  this.refresh();
+                } else {
+                  this.flashMessage.show('Failed to submit your reservation', {cssClass: 'alert-danger' , timeout: 3000});
+                  this.refresh();
+                }
+              }
+          );
+            // return true;
+          } else {
+            this.flashMessage.show('Cannot reserve the time slot.Try another time period', {cssClass: 'alert-danger' , timeout: 3000});
+            return false;
+          }
        }
     );
+
+
+
   }
 
 

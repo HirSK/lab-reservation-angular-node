@@ -15,10 +15,6 @@ export class ReservationService {
     endHour: Number;
     endMinute: Number;
     approval: Boolean;
-    // reservation: any;
-    // dateSelected: any;
-    // startTimeSelected: any;
-    // endTimeSelected: any;
 
     constructor(private http: Http) { }
 
@@ -55,13 +51,8 @@ export class ReservationService {
     }
 
     // VALIDATE WHETHER THE SUBMIT TIME IS AVAILABLE
-    validateAvailability(data) {
-      if (this.http.get('http://localhost:3000/api/checkAvailability', data).map(res => res.json())) {
-          return false;
-      } else {
-        return true;
-      }
-      // return this.http.get('http://localhost:3000/api/checkAvailability', data).map(res => res.json());
+    validateAvailability(reservation) {
+      return this.http.post('http://localhost:3000/api/checkAvailability', reservation).map(res => res.json());
     }
 
     //  GET ALL PENDING REQUESTS FROM 'reservations' COLLECTION
@@ -72,5 +63,15 @@ export class ReservationService {
     // UPDATE THE APPROVAL TO TRUE
     approveRequest(id) {
       return this.http.put('http://localhost:3000/api/approveRequest', id).map(res => res.json());
+    }
+
+    // UPDATE THE APPROVAL TO FALSE
+    rejectRequest(id) {
+      return this.http.put('http://localhost:3000/api/rejectRequest', id).map(res => res.json());
+    }
+
+    // SEARCH RESERVATIONS BY DATE & LABCODE
+    searchReservationsByDate(data) {
+      return this.http.post('http://localhost:3000/api/searchReservationsByDate', data).map(res => res.json());
     }
 }

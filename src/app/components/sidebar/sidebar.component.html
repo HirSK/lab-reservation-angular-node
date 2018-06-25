@@ -27,8 +27,9 @@
                         <div class="row">
                           <div class="col-md-5">
                               <form class="form-inline">
-                                  <app-date-picker></app-date-picker>
-                                  <button mat-raised-button >Search</button>
+                                  <app-date-picker (dateSelected)='OnDateSelected($event)'></app-date-picker>
+                                  <!-- <button mat-raised-button >Search</button> -->
+                                  <button type="button" class="btn btn-primary btn-md" (click)="searchByDate()">Search</button>
                               </form>
                               <hr/>
                           </div>
@@ -39,7 +40,7 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                              <app-lab-info [labCode]="selectedLab.labCode"></app-lab-info>
+                              <app-lab-info [searchResults]="searchedReservations"></app-lab-info>  
                           </div>
                           <!-- <div class="vl" style="border-left: 6px solid green;
                           height: 500px;position: absolute;right: 50%;"></div> -->

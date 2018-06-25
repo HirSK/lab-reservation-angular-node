@@ -1,64 +1,17 @@
-<div class="row">
-  <div class="col-md-6">
-
     <h5><b>Reserved Time Slots</b></h5>
-    <mat-accordion>
+    <mat-accordion *ngFor="let reserve of searchResults">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Reserved Time
+              {{reserve.startHour}}.{{reserve.startMinute}} - {{reserve.endHour}}.{{reserve.endMinute}}
             </mat-panel-title>
             <mat-panel-description>
-            Reserved By
+              {{reserve.reservePurpose}}
             </mat-panel-description>
           </mat-expansion-panel-header>
         </mat-expansion-panel>
-
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Reserved Time
-              </mat-panel-title>
-              <mat-panel-description>
-                Reserved By
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-          </mat-expansion-panel>
     </mat-accordion>
 
-  </div>
-  <div class="col-md-6">
-      <h5><b>Free Time Slots</b></h5>
-      <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Time Slot
-              </mat-panel-title>
-              <mat-panel-description>
-                  <button mat-raised-button color="primary"
-                  matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-                Reserve
-              </button>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-          </mat-expansion-panel>
 
-          <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Time Slot
-                </mat-panel-title>
-                <mat-panel-description>
-                    <button mat-raised-button color="primary"
-                    matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-                  Reserve
-                </button>
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-            </mat-expansion-panel>
-      </mat-accordion>
-  </div>
-</div>
 
 

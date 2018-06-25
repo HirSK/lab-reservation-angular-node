@@ -75,7 +75,7 @@
                     <td>{{pendings.reservePurpose}}</td>
                     <td>
                       <button type="button" class="btn btn-primary btn-sm" *ngIf="pendings.approval==false" (click)="approveRequest(pendings)">Approve</button>&nbsp;
-                      <button type="button" class="btn btn-danger btn-sm" *ngIf="pendings.approval==true">Reject</button>
+                      <button type="button" class="btn btn-danger btn-sm" *ngIf="pendings.approval==true" (click)="rejectRequest(pendings)">Reject</button>
                     </td>
                   </tr>
 

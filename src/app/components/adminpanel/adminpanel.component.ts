@@ -52,4 +52,21 @@ export class AdminpanelComponent implements OnInit {
     );
   }
 
+  // UPDATE THE APPROVAL TO FALSE
+  rejectRequest(pending) {
+    const id = {
+      id: pending._id
+    };
+    this.reservationService.rejectRequest(id).subscribe(
+      data => {
+        if (data.success) {
+          this.flashMessage.show('You cancelled the approval.', {cssClass: 'alert-success' , timeout: 3000});
+          this.refresh();
+        } else {
+          this.flashMessage.show('Failed to cancel the approval', {cssClass: 'alert-danger' , timeout: 3000});
+        }
+       }
+    );
+  }
+
 }
