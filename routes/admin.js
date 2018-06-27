@@ -26,7 +26,7 @@ router.post('/register',function(req,res,next){
     User.findOne(query,function(err,user){
       bcrypt.compare(req.body.password, user.password, function(err,result){
         if(result){
-          res.json({success: true, msg: 'Success'});
+          res.json({success: true, userData:user, msg: 'Success'});
         }else{
           res.json({success: false, msg: 'Login failed'});
         }
