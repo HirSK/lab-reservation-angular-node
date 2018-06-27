@@ -35,10 +35,13 @@ export class LoginComponent implements OnInit {
     this.userService.logInUser(user).subscribe(
       data => {
         if (data.success) {
-          this.router.navigate(['/admin']);
+          // console.log(data.userData);
+          this.userService.saveUserData(data.userData);
+          this.flashMessage.show('You are now logged in', {cssClass: 'alert-success' , timeout: 3000});
+          this.router.navigate(['/adminDashboard']);
         } else {
           this.flashMessage.show('cannot find user', {cssClass: 'alert-danger' , timeout: 3000});
-          this.router.navigate(['/login']);
+          this.router.navigate(['login']);
         }
       }
     );
