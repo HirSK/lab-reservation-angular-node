@@ -50,8 +50,14 @@ export class UserService {
     }
   }
 
+  // REGISTER NEW USER
   registerNewUser(user) {
     return this.http.post('http://localhost:3000/admin/register', user).map(res => res.json());
+  }
+
+  // LOGIN USER
+  logInUser(user) {
+    return this.http.post('http://localhost:3000/admin/login', user).map(res => res.json());
   }
 
 }

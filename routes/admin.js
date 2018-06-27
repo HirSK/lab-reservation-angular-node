@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
 
 var User = require('../models/User');
 
@@ -19,6 +20,19 @@ router.post('/register',function(req,res,next){
   });
 });
 
+  // LOG USER
+  router.post('/login',function(req,res,next){
+    const query = {username: req.body.username};
+    User.findOne(query,function(err,user){
+      bcrypt.compare(req.body.password, user.password, function(err,result){
+        if(result){
+          res.json({success: true, msg: 'Success'});
+        }else{
+          res.json({success: false, msg: 'Login failed'});
+        }
+      });
+    });
+  });
 
 module.exports = router;
 

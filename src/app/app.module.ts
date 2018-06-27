@@ -36,7 +36,8 @@ import { RegisterComponent } from './components/register/register.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'admin', component: AdminpanelComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 

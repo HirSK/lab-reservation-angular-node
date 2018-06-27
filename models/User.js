@@ -16,7 +16,7 @@ userSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('user', userSchema);
+const User = module.exports = mongoose.model('user', userSchema);
 
 // REGISTER NEW USER
 module.exports.addUser = function(user,callback){
@@ -28,4 +28,13 @@ module.exports.addUser = function(user,callback){
     });
   });
 }
+
+
+
+
+
+
+
+
+
 
