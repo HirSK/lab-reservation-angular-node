@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
 
 
 @Injectable({providedIn: 'root'})
@@ -10,6 +11,8 @@ export class UserService {
   inputPassword: String;
   username: String;
   confirmPassword: String;
+
+  loggedUser: any;
 
   constructor(private http: Http) { }
 
@@ -58,6 +61,28 @@ export class UserService {
   // LOGIN USER
   logInUser(user) {
     return this.http.post('http://localhost:3000/admin/login', user).map(res => res.json());
+  }
+
+  saveUserData(loggedUser) {
+    // console.log(loggedUser);
+    // localStorage.setItem('loggerUsername', loggedUser.username);
+    // localStorage.setItem('loggerEmail', loggedUser.email);
+    localStorage.setItem('loggerUser', JSON.stringify(loggedUser));
+    this.loggedUser = loggedUser;
+  }
+
+  logout() {
+    this.loggedUser = null;
+    localStorage.clear();
+  }
+
+  loggedIn() {
+    if (localStorage.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+    // return tokenNotExpired();
   }
 
 }
