@@ -31,12 +31,14 @@ import { AdminpanelComponent } from './components/adminpanel/adminpanel.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
+import { AuthGuard } from './guard/authGuard';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminpanelComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'adminDashboard', component: AdminpanelComponent , canActivate: [AuthGuard]},
+  { path: 'register', component: RegisterComponent , canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent }
 ];
 
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     AdminpanelComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminNavbarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
