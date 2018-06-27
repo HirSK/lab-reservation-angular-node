@@ -6,11 +6,6 @@ var Reservation = require('../models/Reservation');
 
 /* GET ALL LABS */
 router.get('/labs', function(req, res, next) {
-  //console.log("get request for labs");
-  // Lab.find(function (err, labs) {
-  //   if (err) return next(err);
-  //   res.json(labs);
-  // });
   Lab.find({})
   .exec(function(err,labs){
     if(err){

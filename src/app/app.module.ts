@@ -29,11 +29,14 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminpanelComponent }
+  { path: 'admin', component: AdminpanelComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 
@@ -49,7 +52,9 @@ const appRoutes: Routes = [
     HomeComponent,
     NavbarComponent,
     AdminpanelComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

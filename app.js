@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 const cors = require('cors');
 
 var api = require('./routes/api');
+var admin = require('./routes/admin');
 var app = express();
 
 
@@ -28,6 +29,7 @@ app.use(function(req,res,next){
   });
 app.use('/labs', express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

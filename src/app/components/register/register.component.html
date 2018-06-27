@@ -1,0 +1,18 @@
+
+<div class="container" style="width: 25%;height: 60%;padding-top: 40px">
+<form class="form-signin" style="text-align: center" (submit)="registerUser()">  
+    <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+    <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" name="inputEmail" class="form-control" placeholder="Email address" [(ngModel)]="inputEmail" required autofocus><br>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="text" name="username" class="form-control" placeholder="Username" [(ngModel)]="username" required><br>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="inputPassword" required><br>
+    <label for="confirmPassword" class="sr-only">Password</label>
+    <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password" [(ngModel)]="confirmPassword" required><br>
+
+    <button class="btn btn-md btn-primary btn-block" type="submit">Register</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018 - UCSC Lab Reservation System</p>
+</form>
+</div>
