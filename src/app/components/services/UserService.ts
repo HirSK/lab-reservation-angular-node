@@ -67,17 +67,17 @@ export class UserService {
     // console.log(loggedUser);
     // localStorage.setItem('loggerUsername', loggedUser.username);
     // localStorage.setItem('loggerEmail', loggedUser.email);
-    localStorage.setItem('loggerUser', JSON.stringify(loggedUser));
+    sessionStorage.setItem('loggerUser', JSON.stringify(loggedUser));
     this.loggedUser = loggedUser;
   }
 
   logout() {
     this.loggedUser = null;
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   loggedIn() {
-    if (localStorage.length > 0) {
+    if (sessionStorage.length > 0) {
       return true;
     } else {
       return false;

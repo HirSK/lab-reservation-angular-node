@@ -14,8 +14,7 @@ export class DatePickerComponent implements OnInit {
   ngOnInit() {
   }
   onChange() {
-    // console.log(this.model);
     this.dateSelected.emit( this.model );
- }
+  }
 
 }

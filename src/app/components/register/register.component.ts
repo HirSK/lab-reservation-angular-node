@@ -53,10 +53,10 @@ export class RegisterComponent implements OnInit {
       return false;
     }
 
-    // if (!this.userService.validatePasswordLength(this.inputPassword)) {
-    //   this.flashMessage.show('Please enter a password of length above 6 characters', {cssClass: 'alert-danger' , timeout: 3000});
-    //   return false;
-    // }
+    if (!this.userService.validatePasswordLength(this.inputPassword)) {
+      this.flashMessage.show('Please enter a password of length above 6 characters', {cssClass: 'alert-danger' , timeout: 3000});
+      return false;
+    }
 
     if (!this.userService.validatePasswords(this.inputPassword, this.confirmPassword)) {
       this.flashMessage.show('Passwords do not match', {cssClass: 'alert-danger' , timeout: 3000});
