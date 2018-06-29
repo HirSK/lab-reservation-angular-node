@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <img src="../../../assets/images/ucsc_logo.png" alt="ucsc logo" style="height: 4%;width: 4%">
     <a class="navbar-brand" href="#">Lab Reservation System - UCSC</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,7 +13,7 @@
               <a class="nav-link" [routerLink]="['/login']">Login</a>
           </li>
           <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-              <a class="nav-link" (click)="logout()" href="#">Logout</a> 
+              <a class="nav-link" (click)="logout()" href="#">Logout</a>
           </li>
       </ul>
       <!-- <form class="form-inline my-2 my-md-0">
