@@ -64,9 +64,6 @@ export class UserService {
   }
 
   saveUserData(loggedUser) {
-    // console.log(loggedUser);
-    // localStorage.setItem('loggerUsername', loggedUser.username);
-    // localStorage.setItem('loggerEmail', loggedUser.email);
     sessionStorage.setItem('loggerUser', JSON.stringify(loggedUser));
     this.loggedUser = loggedUser;
   }
@@ -82,7 +79,6 @@ export class UserService {
     } else {
       return false;
     }
-    // return tokenNotExpired();
   }
 
 }

@@ -14,6 +14,14 @@
 
     <mat-sidenav-content>
 
+        <div *ngIf="!selectedLab">
+            <h3 style="text-align: center">Welcome to Lab Reservation System</h3>
+            <p style="text-align: center">University of Colombo School of Computing</p>
+
+            <div class="main-page"></div>
+        </div>
+
+
         <div *ngIf="selectedLab">
 
             <h4 style="text-align: center">{{ selectedLab.labName | uppercase }} - Lab Reservations </h4>
