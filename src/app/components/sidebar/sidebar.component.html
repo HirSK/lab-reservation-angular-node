@@ -15,12 +15,33 @@
     <mat-sidenav-content>
 
         <div *ngIf="!selectedLab">
-            <h3 style="text-align: center">Welcome to Lab Reservation System</h3>
-            <p style="text-align: center">University of Colombo School of Computing</p>
-
-            <div class="main-page"></div>
+            <div class="main-page">
+              <h3 style="text-align: center">Welcome to Lab Reservation System</h3>
+              <p style="text-align: center">University of Colombo School of Computing</p>
+            </div>
+            <div class="container" style="padding-left: 70px">
+              <h5>Current Reservations</h5>
+              <div class="col-md-6" style="text-align: left">
+                <div *ngFor="let lab of labs">
+                  <br>
+                    <h6>{{lab.labName}}</h6>
+                    <mat-accordion *ngFor="let reserve of allReservations">
+                        <mat-expansion-panel *ngIf=" reserve.labCode == lab.labCode ">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{reserve.reserveDate}} &nbsp;
+                              <b>{{reserve.startHour}}.{{reserve.startMinute}} - {{reserve.endHour}}.{{reserve.endMinute}}</b>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              {{reserve.reservePurpose}}
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+              </div>
+          </div>
         </div>
-
 
         <div *ngIf="selectedLab">
 
