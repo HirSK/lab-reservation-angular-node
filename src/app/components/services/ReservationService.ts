@@ -75,4 +75,9 @@ export class ReservationService {
       return this.http.post('http://localhost:3000/api/searchReservationsByDate', data).map(res => res.json());
     }
 
+    // GET ALL APPROVED REQUESTS
+    getApprovedRequests() {
+      return this.http.get('http://localhost:3000/api/getApprovedRequests').map(res => res.json());
+    }
+
 }
