@@ -244,6 +244,18 @@ router.get('/getAllPendingRequests',function(req,res,next) {
   });
 })
 
+//  GET ALL APPROVED REQUESTS OF THE USER
+router.get('/getApprovedRequests',function(req,res,next) {
+  Reservation.find({approval: true})
+  .exec(function(err,reservations){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(reservations);
+    }
+  });
+})
+
 // UPDATES A REQUEST'S APPROVAL TO TRUE
 router.put('/approveRequest',function(req,res,next) {
 

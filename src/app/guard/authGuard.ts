@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../components/services/UserService';
 import { CanActivate } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 
 

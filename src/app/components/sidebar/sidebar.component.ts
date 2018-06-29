@@ -1,7 +1,6 @@
 import { Component , OnInit} from '@angular/core';
 import { LabService } from '../services/LabService';
 import {MatDialog} from '@angular/material';
-import { NewReservationDialogComponent } from '../new-reservation-dialog/new-reservation-dialog.component';
 import { ReservationService} from '../services/ReservationService';
 import { FlashMessagesService} from 'angular2-flash-messages';
 
@@ -14,6 +13,7 @@ export class SidebarComponent implements OnInit {
 
   labs: LabService[] = [];
   searchedReservations: ReservationService[] = [];
+  allReservations: ReservationService[] = [];
   selectedLab: LabService;
   dateSelected: any;
   dialogResult = '';
@@ -30,6 +30,14 @@ export class SidebarComponent implements OnInit {
       labs => {
         console.log(labs);
         this.labs = labs;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    this.reservationService.getApprovedRequests().subscribe(
+      reservations => {
+        this.allReservations = reservations;
       },
       err => {
         console.log(err);

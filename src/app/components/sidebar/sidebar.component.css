@@ -70,10 +70,5 @@
 
   .main-page{
     background-image: url("../../../assets/images/ucsc.jpg") ;
-    opacity: .4;
-    height: 600px;
-    background-size: 1300px 1300px;
-    /* background-size: auto; */
-    /* background-position: center bottom, left top; */
-    background-repeat: no-repeat;
+    /* opacity: .4; */
   }

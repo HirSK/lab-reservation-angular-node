@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AdminNavbarComponent implements OnInit {
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private flashMessage: FlashMessagesService,
     private router: Router
   ) { }
